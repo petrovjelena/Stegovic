@@ -94,17 +94,15 @@ if __name__ == "__main__":
     banner()
     print("\n")
     parser = argparse.ArgumentParser(description = "Welcome to Stegovic- an image steganography tool.")
-    subparsers = parser.add_subparsers(dest='command')
 
-    parser_request = subparsers.add_parser("-e", help="Select to encode your data")
-    parser_request = subparsers.add_parser("-dtxt", help="Select to retrieve text from an image")
-    parser_request = subparsers.add_parser("-dimg", help="Select to retrieve image from an image")
-
-    parser_request.add_argument("-c", "--cover", help="The path for the image that will carry the hidden data", dest="Cover")
-    parser_request.add_argument("-i", "--image", help="The path for the image that will be hidden", dest="SecretImage")
-    parser_request.add_argument("-m", "--message", help="The text that will be hidden", dest="Message")
-    parser_request.add_argument("-a", "--encimg", help="The path to an encoded image for decoding", dest="EncodedImage")
-    parser_request.add_argument("-o", "--output", help="Provide path for the output encoded image", dest="Output")
+    parser.add_argument("-c", "--cover", help="The path for the image that will carry the hidden data", dest="Cover")
+    parser.add_argument("-i", "--image", help="The path for the image that will be hidden", dest="SecretImage")
+    parser.add_argument("-m", "--message", help="The text that will be hidden", dest="Message")
+    parser.add_argument("-a", "--encimg", help="The path to an encoded image for decoding", dest="EncodedImage")
+    parser.add_argument("-o", "--output", help="Provide path for the output encoded image", dest="Output")
+    parser.add_argument("-e", "--encode", help="Select to encode your data", action="store_true")
+    parser.add_argument("-dtxt", "--decodetext", help="Select to retrieve text from an image", action="store_true")
+    parser.add_argument("-dimg", "--decodeimg", help="Select to retrieve image from an image", action="store_true")
     
     args = parser.parse_args()
     
@@ -115,15 +113,19 @@ if __name__ == "__main__":
     out_img = args.Output
     
 
-    if args.command == 'encode':
+    if args.encode:
         if txt_msg:
             encode_text(args.cover_img, args.txt_msg, args.out_img)
             print ("Your text has been encoded.")
 
+        elif scr_img:
+            encode_image(args.cover_img, args.scr_img, args.out_img)
+            print ("Your image has been encoded.")
+
         else: parser.print_help()
 
 
-    if args.command == 'decodetext':
+    if args.decodetext:
         decoded_text = decode_text(args.enc_img)
         print("Decoded text:", decoded_text)
 

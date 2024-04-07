@@ -96,9 +96,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = "Welcome to Stegovic- an image steganography tool.")
     subparsers = parser.add_subparsers(dest='command')
 
-    parser_request = subparsers.add_parser("-e", "--encode", help="Select to encode your data", action="store_true")
-    parser_request = subparsers.add_parser("-dtxt", "--decodetext", help="Select to retrieve text from an image", action="store_true")
-    parser_request = subparsers.add_parser("-dimg", "--decodeimg", help="Select to retrieve image from an image", action="store_true")
+    parser_request = subparsers.add_parser("-e", help="Select to encode your data")
+    parser_request = subparsers.add_parser("-dtxt", help="Select to retrieve text from an image")
+    parser_request = subparsers.add_parser("-dimg", help="Select to retrieve image from an image")
 
     parser_request.add_argument("-c", "--cover", help="The path for the image that will carry the hidden data", dest="Cover")
     parser_request.add_argument("-i", "--image", help="The path for the image that will be hidden", dest="SecretImage")

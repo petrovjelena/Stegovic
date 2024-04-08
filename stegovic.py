@@ -25,6 +25,8 @@ def rgb2bin(rgb_tuple): #converts binary values to binary
 
 
 def encode_text(cover_img, txt_msg, out_img):
+
+    print("\033[92m Please wait- encoding in progress\033[0m")
     image = Image.open(cover_img)
     width, height = image.size
     pixel = image.load()

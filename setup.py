@@ -11,6 +11,5 @@ setup(
     install_requires=[
         "setuptools>=68.2.2",
         "pillow>=10.0.1",
-        "requests>=2.31.0",
     ],
 )

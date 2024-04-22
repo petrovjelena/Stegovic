@@ -1,28 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[23]:
-
-
 from PIL import Image
-
-
-# In[24]:
-
 
 def txt2bin(text): #converts text into 8 bit binary
     return ''.join(format(ord(i), '08b') for i in text)
-
-
-# In[25]:
-
-
-def int2bin(int):
-    return "{0:08b}".format(int)
-
-
-# In[36]:
-
 
 def encode_text(cover_img, txt_msg, password, out_img):
 
@@ -64,9 +43,6 @@ def encode_text(cover_img, txt_msg, password, out_img):
     print("Success- your encoded image has been saved.")
 
 
-# In[42]:
-
-
 def decode_text(enc_img, password):
 
     print("\n\033[92m>>>Decoding\033[0m\n\033[92m>>>Please wait\033[0m\n")
@@ -96,9 +72,6 @@ def decode_text(enc_img, password):
         print("Decoded message: ", dec_msg[:-p])
     else:
         print("Wrong password entered. Please try again.")
-
-
-# In[38]:
 
 
 def encode_image(cover_img, scr_img, out_img):
@@ -135,9 +108,6 @@ def encode_image(cover_img, scr_img, out_img):
     print("Success- your encoded image has been saved.")
 
 
-# In[39]:
-
-
 def decode_image(enc_img, out_img):
 
     print("\n\033[92m>>>Decoding\033[0m\n\033[92m>>>Please wait\033[0m\n")
@@ -158,9 +128,6 @@ def decode_image(enc_img, out_img):
 
     scr_img.save(out_img)
     print("Success- the decoded image has been saved.") 
-
-
-# In[41]:
 
 
 def banner():
@@ -201,11 +168,9 @@ if __name__ == "__main__":
         cover_img = input()
         print("Type path for image to hide:")
         scr_img = input()
-        print("Enter a password to protect the encoded data:")
-        password = input()
         print("Type path of where you want the encoded image to be saved:")
         out_img = input()
-        encode_image(cover_img, scr_img, password, out_img)
+        encode_image(cover_img, scr_img, out_img)
 
     elif func == '3':
         print("Type path for image to be decoded:")
@@ -215,20 +180,12 @@ if __name__ == "__main__":
         decode_text(enc_img, password)
 
     elif func == '4':
-        print("Enter a password:")
-        password = input()
         print("Type path for image to be decoded:")
         enc_img = input()
         print("Type path of where you want the decoded image to be saved:")
         out_img = input()
-        decode_image(password, enc_img, out_img)
+        decode_image(enc_img, out_img)
 
     else:
         print("Please select from one of the 4 options and enter the corresponding number.")
-
-
-# In[ ]:
-
-
-
-
+        

@@ -116,16 +116,29 @@ def decode_image(enc_img, out_img):
     scr_img = Image.new("RGB", enc_img.size)
 
     e_pix = enc_img.load()
-    s_pix = scr_img.load()
 
     e_w = enc_img.size[0]
     e_h = enc_img.size[1]
 
+    s_data = []
+    
     for x in range(e_w):
         for y in range(e_h):
             r, g, b = e_pix[x, y]
-            s_pix[x, y] = ((r & 1) << 7, (g & 1) << 7, (b & 1) << 7)
-
+            s_data.extend([(r & 1), (g & 1), (b & 1)])
+            
+    s_pix = scr_img.load()
+    data_index = 0
+    
+    for x in range(e_w):
+        for y in range(e_h):
+            s_pix[x, y] = (
+                (s_data[data_index] << 7),
+                (s_data[data_index + 1] << 7),
+                (s_data[data_index + 2] << 7)
+            )
+            data_index += 3
+            
     scr_img.save(out_img)
     print("Success- the decoded image has been saved.") 
 

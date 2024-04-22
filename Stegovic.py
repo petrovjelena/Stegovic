@@ -99,9 +99,9 @@ def encode_image(cover_img, scr_img, out_img):
         for y in range(s_h):
             r, g, b = c_pix[x, y]
             ra, rb, rc = s_pix[x, y]
-            o_r = (r & ~1) | (ra >> 7)
-            o_g = (g & ~1) | ((rb >> 7) & 1)
-            o_b = (b & ~1) | ((rc >> 7) & 1)
+            o_r = (r & ~1) | (ra & 1)
+            o_g = (g & ~1) | (rb & 1)
+            o_b = (b & ~1) | (rc & 1)
             c_pix[x, y] = (o_r, o_g, o_b)
 
     cover_img.save(out_img)
